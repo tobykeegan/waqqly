@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 20 # Use the Node.js version compatible with your project
+  - 18 # Use the Node.js version compatible with your project
 
 cache:
   npm: true # Cache npm packages to speed up builds
