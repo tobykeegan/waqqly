@@ -15,6 +15,7 @@ before_install:
 
 install:
   - bun install # Install project dependencies
+  - npx playwright install # Test framework
 
 script:
   - bun run lint
