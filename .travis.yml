@@ -12,6 +12,7 @@ before_install:
   - bun --version
 
 install:
+  - npx install playwright
   - bun install # Install project dependencies
 
 script:
