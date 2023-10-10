@@ -1,0 +1,21 @@
+language: shell
+os: linux
+dist: focal
+
+
+jobs:
+  include:
+    - stage: Test
+      if: type = push
+      script: >-
+        make test
+    - stage: Run (main)
+      if: branch = main AND type != pull_request
+      env: RUN_FLAGS="--dry-run=false"
+      script: >-
+          make run
+    - stage: Run (PR)
+      if: type = pull_request
+      env: RUN_FLAGS="--dry-run=true"
+      script: >-
+          make test run
