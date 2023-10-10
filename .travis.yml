@@ -6,6 +6,10 @@ node_js:
 cache:
   npm: true # Cache npm packages to speed up builds
 
+before_install:
+  - curl -fsSL https://bun.sh/install | bash
+  - source ~/.bashrc
+
 install:
   - bun install # Install project dependencies
 
