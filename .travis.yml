@@ -9,6 +9,9 @@ cache:
 before_install:
   - curl -fsSL https://bun.sh/install | bash
   - source ~/.bashrc
+  - echo bun --version
+  - echo node --version
+  - echo npm --version
 
 install:
   - bun install # Install project dependencies
