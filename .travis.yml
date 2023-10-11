@@ -22,6 +22,8 @@ script:
   - bun run test # Run tests (adjust this to match your project setup)
 
 deploy:
- provider: azure_web_apps
- on:
-   branch: travis-setup
+
+  provider: azure_web_apps
+  on:
+    branch: travis-setup
+ skip_cleanup: true
