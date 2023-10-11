@@ -20,3 +20,8 @@ script:
   - bun run lint
   - bun run build # Run the build script (adjust this to match your project setup)
   - bun run test # Run tests (adjust this to match your project setup)
+
+deploy:
+ provider: azure_web_apps
+ on:
+   branch: main
