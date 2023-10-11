@@ -23,5 +23,5 @@ script:
 
 deploy:
  provider: azure_web_apps
-#  on:
-  #  branch: main
+ on:
+   branch: travis-setup
