@@ -13,6 +13,7 @@ before_install:
 
 install:
   - bun install # Install project dependencies
+  - npx playwright install
 
 jobs:
   include:
@@ -34,7 +35,7 @@ jobs:
         - bun run build # Run the build script (adjust this to match your project setup)
 
 
-    # - stage: deploy
-deploy:
-  provider: azure_web_apps
-  skip_cleanup: true
+    - stage: deploy
+      deploy:
+        provider: azure_web_apps
+        skip_cleanup: true
