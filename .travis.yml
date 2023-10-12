@@ -15,8 +15,18 @@ install:
   - npx playwright install
   - bun install # Install project dependencies
 
-script:
-  - bun run format
-  - bun run lint
-  - bun run build # Run the build script (adjust this to match your project setup)
-  - bun run test # Run tests (adjust this to match your project setup)
+jobs:
+  include:
+
+    - stage: lint
+      if: branch = main
+      script:
+        - bun run format
+        - bun run lint
+
+    - stage: test
+      script:
+        - bun run test # Run tests (adjust this to match your project setup)
+
+    - stage: build
+        - bun run build # Run the build script (adjust this to match your project setup)
