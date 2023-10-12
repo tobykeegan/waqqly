@@ -37,5 +37,7 @@ jobs:
 
     - stage: deploy
       deploy:
+        on:
+          all_branches: true
         provider: azure_web_apps
         skip_cleanup: true
