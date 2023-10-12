@@ -12,7 +12,6 @@ before_install:
   - bun --version
 
 install:
-  - npx playwright install
   - bun install # Install project dependencies
 
 jobs:
@@ -21,11 +20,13 @@ jobs:
     - stage: lint
       if: branch = main
       script:
+        - npx playwright install
         - bun run format
         - bun run lint
 
     - stage: test
       script:
+        - npx playwright install
         - bun run test # Run tests (adjust this to match your project setup)
 
     - stage: build
