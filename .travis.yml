@@ -39,7 +39,7 @@ jobs:
         - bun run build # Run the build script (adjust this to match your project setup)
         - mv ./Containerfile ./Dockerfile
         - docker build -t waqqly . 
-        - docker run --name waqqly -p 3000:3000 waqqly
+        - docker run -d --name waqqly -p 3000:3000 waqqly
         - docker ps -a
 
     

@@ -1,5 +1,14 @@
 <script>
+	import Modal from '../Modal.svelte';
+
+	let showModal = false;
 </script>
+
+<Modal bind:showModal>
+	<h2 slot="header">
+		Registration complete
+	</h2>
+</Modal>
 
 <main>
 	<section class="hero">
@@ -77,7 +86,7 @@
 
 				<div class="field is-grouped">
 					<div class="control">
-						<button class="button is-link">Submit</button>
+						<button on:click={() => (showModal = true)} class="button is-link">Submit</button>
 					</div>
 					<div class="control">
 						<a class="button is-link is-light" href="/">Cancel</a>
