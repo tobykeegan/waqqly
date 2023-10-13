@@ -1,5 +1,8 @@
 language: node_js
 
+services:
+  - docker
+
 node_js:
   - 20 # Use the Node.js version compatible with your project
 
@@ -34,11 +37,8 @@ jobs:
     - stage: build
       script:
         - bun run build # Run the build script (adjust this to match your project setup)
+        - docker build -t waqqly . 
+        - docker run --name waqqly -p 3000:3000 waqqly
+        - docker ps -a
 
-
-    - stage: deploy
-      deploy:
-        on:
-          all_branches: true
-        provider: azure_web_apps
-        skip_cleanup: true
+    
