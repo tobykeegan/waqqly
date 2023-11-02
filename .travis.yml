@@ -43,6 +43,8 @@ jobs:
         - docker ps -a
 
     - stage: deploy
+      script:
+        - bun run build # Run the build script (adjust this to match your project setup)
       deploy:
         on:
           all_branches: true
