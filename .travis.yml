@@ -42,7 +42,7 @@ jobs:
         - docker run -d --name waqqly -p 3000:3000 waqqly
         - docker ps -a
 
-    - stage: deploy_prod
+    - stage: deploy
       deploy:
         on:
           all_branches: true
@@ -52,4 +52,4 @@ jobs:
         bucket: "waqqly"
         skip_cleanup: true
         region: "eu-west-2"
-        upload-dir: build
+        local_dir: build
