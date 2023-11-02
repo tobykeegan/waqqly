@@ -41,5 +41,12 @@ jobs:
         - docker build -t waqqly . 
         - docker run -d --name waqqly -p 3000:3000 waqqly
         - docker ps -a
-
-    
+    - stage: deploy
+        deploy:
+          provider: s3
+          access_key_id: $AWS_ACCESS_KEY_ID
+          secret_access_key: $AWS_SECRET_ACCESS_KEY
+          bucket: "waqqly"
+          skip_cleanup: true
+          region: "eu-west-2"
+          upload-dir: build
