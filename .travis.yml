@@ -45,6 +45,7 @@ jobs:
     - stage: deploy
       script:
         - bun run build # Run the build script (adjust this to match your project setup)
+        - zip -r build.zip build   
       deploy:
         on:
           all_branches: true
@@ -54,4 +55,4 @@ jobs:
         bucket: "waqqly"
         skip_cleanup: true
         region: "eu-west-2"
-        local_dir: build
+        file: build.zip
