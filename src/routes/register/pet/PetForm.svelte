@@ -85,9 +85,7 @@
 				</div>
 
 				<div class="field is-grouped">
-					<div class="control">
-						<button on:click={() => (showModal = true)} class="button is-link">Submit</button>
-					</div>
+
 					<div class="control">
 						<a class="button is-link is-light" href="/">Cancel</a>
 					</div>
