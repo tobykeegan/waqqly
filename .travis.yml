@@ -43,7 +43,7 @@ jobs:
         - docker ps -a
 
     - stage: deploy
-      script:
+      before_deploy:
         - bun run build # Run the build script (adjust this to match your project setup)
         - zip -r build.zip build   
       deploy:
@@ -55,4 +55,4 @@ jobs:
         bucket: "waqqly"
         skip_cleanup: true
         region: "eu-west-2"
-        file: build.zip
+        glob: 'build.zip'
