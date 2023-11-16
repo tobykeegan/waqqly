@@ -16,6 +16,7 @@ before_install:
 
 install:
   - bun install # Install project dependencies
+  - npx playwright install
 
 script: 'true'
 
@@ -29,14 +30,9 @@ jobs:
         - bun run format
         - bun run lint
 
-    - stage: test
+    - stage: build_and_test
       script:
-        - npx playwright install
-        - bun run test # Run tests (adjust this to match your project setup)
-
-    - stage: build
-      script:
-        - bun run build # Run the build script (adjust this to match your project setup)
+        - bun run build
         - mv ./Containerfile ./Dockerfile
         - docker build -t waqqly . 
         - docker run -d --name waqqly -p 3000:3000 waqqly
@@ -44,7 +40,7 @@ jobs:
 
     - stage: deploy
       before_deploy:
-        - bun run build # Run the build script (adjust this to match your project setup)
+        - bun run build 
         - zip -r build.zip build   
       deploy:
         on:
