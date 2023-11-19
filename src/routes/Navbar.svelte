@@ -30,6 +30,15 @@
 					<a class="navbar-item" href="/register/walker"> Register a walker </a>
 				</div>
 			</div>
+			<div class="navbar-item has-dropdown is-hoverable">
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a class="navbar-link"> View </a>
+
+				<div class="navbar-dropdown">
+					<a class="navbar-item" href="/view/pets"> View our pets </a>
+					<a class="navbar-item" href="/view/walkers"> View the walkers </a>
+				</div>
+			</div>
 		</div>
 	</div>
 </nav>
