@@ -1,5 +1,8 @@
 language: node_js
 
+services:
+  - docker
+
 node_js:
   - 20 # Use the Node.js version compatible with your project
 
@@ -12,11 +15,46 @@ before_install:
   - bun --version
 
 install:
-  - npx playwright install
   - bun install # Install project dependencies
+  - npx playwright install
 
-script:
-  - bun run format
-  - bun run lint
-  - bun run build # Run the build script (adjust this to match your project setup)
-  - bun run test # Run tests (adjust this to match your project setup)
+script: 'true'
+
+jobs:
+  include:
+    - stage: lint
+      if: branch = main
+      script:
+        - npx playwright install
+        - bun run format
+        - bun run lint
+
+    - stage: build_and_test # build and test for non-main branches. Does not push to Docker registry.
+      if: branch != main
+      script:
+        - bun run build
+        - bun run test
+        - mv ./Containerfile ./Dockerfile
+        - docker build -t waqqly .
+        - docker run -d --name waqqly -p 3000:3000 waqqly
+        - docker ps -a
+        # - ./travis/test_container_running.bash
+
+    - stage: build_and_test_prod # build and test for non-main branches. Does not push to Docker registry.
+      if: branch = main
+      script:
+        - bun run build
+        - bun run test
+        - mv ./Containerfile ./Dockerfile
+        - docker build -t waqqly .
+        - docker run -d --name waqqly -p 3000:3000 waqqly
+        - docker ps -a
+        # - ./travis/test_container_running.bash
+
+    - stage: deploy
+      script:
+        - git clone --depth=50 --branch=$TRAVIS_BRANCH https://github.ibm.com/Toby-Keegan/waqqly.git Toby-Keegan/waqqly
+        - cd Toby-Keegan/waqqly
+        - git status
+        - git remote add public_gh https://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@github.com/tobykeegan/waqqly.git
+        - git push public_gh $TRAVIS_BRANCH
