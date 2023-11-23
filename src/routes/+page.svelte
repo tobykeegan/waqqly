@@ -2,7 +2,7 @@
 </script>
 
 <main>
-	<div class="columns">
+	<div class="columns is-desktop">
 		<div class="column">
 			<section class="section">
 				<h1 class="title">Welcome to the waqq.ly prototype!</h1>

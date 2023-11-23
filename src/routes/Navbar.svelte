@@ -1,4 +1,8 @@
-<nav class="navbar" aria-label="main navigation">
+<script>
+	let open = false;
+</script>
+
+<nav class="navbar is-success" aria-label="main navigation">
 	<div class="navbar-brand">
 		<a class="navbar-item is-size-3 has-text-weight-bold" href="/"> waqq.ly </a>
 
@@ -10,6 +14,9 @@
 			aria-expanded="false"
 			data-target="navbarBasicExample"
 			href=""
+			on:click={() => {
+				open = !open;
+			}}
 		>
 			<span aria-hidden="true" />
 			<span aria-hidden="true" />
@@ -17,7 +24,7 @@
 		</a>
 	</div>
 
-	<div id="navbarBasicExample" class="navbar-menu">
+	<div id="navbar-main" class="navbar-menu" class:is-active={open}>
 		<div class="navbar-start">
 			<a class="navbar-item" href="/"> Home </a>
 
