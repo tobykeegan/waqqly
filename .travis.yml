@@ -9,15 +9,6 @@ node_js:
 cache:
   npm: true # Cache npm packages to speed up builds
 
-# before_install:
-#   - curl -fsSL https://npm.sh/install | bash
-#   - source ~/.bashrc
-#   - npm --version
-
-# install:
-#   - npm install --no-save # Install project dependencies
-#   # - npx playwright install
-
 script: 'true'
 
 jobs:
@@ -25,36 +16,13 @@ jobs:
     - stage: lint
       if: branch = main
       script:
-        # - npx playwright install
         - npm run format
         - npm run lint
-
-    - stage: build_and_test # build and test for non-main branches. Does not push to Docker registry.
-      if: branch != main
-      script:
-        - npm run build
-        # - npm run test
-        - mv ./Containerfile ./Dockerfile
-        - docker build -t waqqly .
-        - docker run -d --name waqqly -p 3000:3000 waqqly
-        - docker ps -a
-        # - ./travis/test_container_running.bash
-
-    - stage: build_and_test_prod # build and test for non-main branches. Does not push to Docker registry.
-      if: branch = main
-      script:
-        - npm run build
-        # - npm run test
-        - mv ./Containerfile ./Dockerfile
-        - docker build -t waqqly .
-        - docker run -d --name waqqly -p 3000:3000 waqqly
-        - docker ps -a
-        # - ./travis/test_container_running.bash
 
     - stage: deploy
       script:
         - git clone --depth=50 --branch=$TRAVIS_BRANCH https://github.ibm.com/Toby-Keegan/waqqly.git Toby-Keegan/waqqly
         - cd Toby-Keegan/waqqly
         - git status
-        - git remote add public_gh https://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@github.com/tobykeegan/waqqly.git
+        - git remote add public_gh https://${PUBLIC_GH_KEY}@github.com/tobykeegan/waqqly.git
         - git push public_gh $TRAVIS_BRANCH
