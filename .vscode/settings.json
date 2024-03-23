@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/8e721527-ac28-42ff-a421-26c08ea3c9f4/resourceGroups/waqqly_group/providers/Microsoft.Web/sites/waqqly",
-    "appService.deploySubpath": "."
-}

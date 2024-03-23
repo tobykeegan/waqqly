@@ -15,8 +15,6 @@
 	function handleSubmit() {
 		const serverUrl = import.meta.env.VITE_API_URI + '/pets';
 
-		console.log(formData);
-
 		fetch(serverUrl, {
 			method: 'POST',
 			headers: {
