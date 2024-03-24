@@ -7,14 +7,6 @@
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AWS_IAM"
-            },
-            {
-              "apiKeyConfig": {
-                "apiKeyExpirationDate": "2025-03-24T12:43:57.946Z",
-                "apiKeyExpirationDays": 365,
-                "description": "API Key"
-              },
-              "authenticationType": "API_KEY"
             }
           ],
           "defaultAuthentication": {
@@ -31,7 +23,7 @@
     }
   },
   "auth": {
-    "waqqly3c00b261": {
+    "waqqly": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -40,11 +32,19 @@
           "SMS"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ],
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "EMAIL"
+          "EMAIL",
+          "NAME",
+          "PHONE_NUMBER",
+          "ADDRESS"
         ],
         "socialProviders": [],
         "usernameAttributes": [
