@@ -8,10 +8,3 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-
-# sst
-.sst
-
-# amplify
-.amplify
-amplifyconfiguration*

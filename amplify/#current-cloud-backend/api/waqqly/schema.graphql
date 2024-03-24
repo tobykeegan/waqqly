@@ -1,0 +1,22 @@
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  email: String
+  address: String
+  phone: String
+  Pets: [Pet] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+type Pet @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  breed: String
+  gender: Gender
+  info: String
+  userID: ID! @index(name: "byUser")
+}
