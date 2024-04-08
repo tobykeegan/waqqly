@@ -1,8 +1,13 @@
 "use client";
 import { PetCreateForm } from "../../../ui-components";
-// import "../../globals.css";
 import "@aws-amplify/ui-react/styles.css";
 
 export default function PetRegisterPage() {
-  return <PetCreateForm />;
+  return (
+    <section className="section">
+      <h1 className="title">Register a Pet</h1>
+
+      <PetCreateForm />
+    </section>
+  );
 }

@@ -223,13 +223,13 @@ export default function PetCreateForm(props) {
   const [currentUserIDValue, setCurrentUserIDValue] = React.useState(undefined);
   const userIDRef = React.createRef();
   const getDisplayValue = {
-    userID: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
+    userID: (r) => `${r?.name}`,
   };
   const validations = {
     name: [],
     breed: [],
     gender: [],
-    info: [],
+    info: [{ type: "Required" }],
     userID: [{ type: "Required" }],
   };
   const runValidationTasks = async (
@@ -256,9 +256,7 @@ export default function PetCreateForm(props) {
     while (newOptions.length < autocompleteLength && newNext != null) {
       const variables = {
         limit: autocompleteLength * 5,
-        filter: {
-          or: [{ name: { contains: value } }, { id: { contains: value } }],
-        },
+        filter: { or: [{ name: { contains: value } }] },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
@@ -443,8 +441,9 @@ export default function PetCreateForm(props) {
       </SelectField>
       <TextField
         label="Info"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
+        placeholder="Tell us about your pet..."
         value={info}
         onChange={(e) => {
           let { value } = e.target;
@@ -488,7 +487,7 @@ export default function PetCreateForm(props) {
           setCurrentUserIDValue(undefined);
         }}
         currentFieldValue={currentUserIDValue}
-        label={"User id"}
+        label={"Owner"}
         items={userID ? [userID] : []}
         hasError={errors?.userID?.hasError}
         runValidationTasks={async () =>
@@ -522,7 +521,7 @@ export default function PetCreateForm(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="User id"
+          label="Owner"
           isRequired={true}
           isReadOnly={false}
           placeholder="Search User"
