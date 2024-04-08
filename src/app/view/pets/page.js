@@ -2,7 +2,7 @@ import { generateServerClientUsingCookies } from "@aws-amplify/adapter-nextjs/ap
 import amplifyConfig from "@/amplifyconfiguration.json";
 import { cookies } from "next/headers";
 import { getUser, listPets } from "../../../graphql/queries";
-import { deletePet } from "../../../graphql/mutations";
+
 import PetTable from "./PetTable";
 
 export const cookieBasedClient = generateServerClientUsingCookies({
@@ -10,11 +10,22 @@ export const cookieBasedClient = generateServerClientUsingCookies({
   cookies,
 });
 
+// Define the variables for the query
+const filter = {}; // Optional filter
+const limit = 10; // Optional limit
+let nextToken = null; // Optional nextToken, if paginating
+
+// Run the GraphQL query using Amplify
 async function fetchPets() {
+  let result;
   const request = await cookieBasedClient.graphql({
     query: listPets,
+    variables: {
+      filter,
+      limit,
+      nextToken,
+    },
   });
-
   return request.data.listPets.items;
 }
 
@@ -25,12 +36,12 @@ async function getUserName(id) {
       id,
     },
   });
-
-  return request.data.getUser.name;
+  return request.data.getUser?.name ? request.data.getUser?.name : "No owner";
 }
 
 export default async function ViewPet() {
   let data = await fetchPets();
+  console.log("Data: ", data);
 
   // Get the user name for each pet
   let formatted = await Promise.all(
