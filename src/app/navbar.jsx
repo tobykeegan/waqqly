@@ -1,9 +1,20 @@
+import Image from "next/image";
+import icon from "@/public/pawprint.png";
+import bulmaBadge from "@/public/bulma.png";
 export default function Navbar() {
   return (
-    <nav className="navbar is-success" aria-label="main navigation">
+    <nav className="navbar is-primary" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item is-size-3 has-text-weight-bold" href="/">
-          waqq.ly
+          <div className="level">
+            <div className="level-left">
+              <Image src={icon} alt="wagg.ly" width="30" height="30" />
+            </div>
+            <div className="level-right">
+              <span>wagg.ly</span>
+              <span className="tag is-warning is-medium">Beta</span>
+            </div>
+          </div>
         </a>
         <a
           role="button"
@@ -44,6 +55,15 @@ export default function Navbar() {
                 View the walkers
               </a>
             </div>
+          </div>
+        </div>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <a href="https://docs.amplify.aws/gen2/">
+              <span className="tag is-link is-medium">
+                Made with AWS Amplify Gen 2
+              </span>
+            </a>
           </div>
         </div>
       </div>

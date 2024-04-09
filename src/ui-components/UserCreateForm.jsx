@@ -229,7 +229,7 @@ export default function UserCreateForm(props) {
       : getIDValue.Pets?.(Pets)
   );
   const getDisplayValue = {
-    Pets: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
+    Pets: (r) => `${r?.name}${" - "}`,
   };
   const validations = {
     name: [],
@@ -262,9 +262,7 @@ export default function UserCreateForm(props) {
     while (newOptions.length < autocompleteLength && newNext != null) {
       const variables = {
         limit: autocompleteLength * 5,
-        filter: {
-          or: [{ name: { contains: value } }, { id: { contains: value } }],
-        },
+        filter: { or: [{ name: { contains: value } }] },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
@@ -519,7 +517,7 @@ export default function UserCreateForm(props) {
           setCurrentPetsDisplayValue("");
         }}
         currentFieldValue={currentPetsValue}
-        label={"Pets"}
+        label={"Dogs"}
         items={Pets}
         hasError={errors?.Pets?.hasError}
         runValidationTasks={async () =>
@@ -535,10 +533,11 @@ export default function UserCreateForm(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="Pets"
+          label="Dogs"
+          descriptiveText="Find any dogs this walker is associated with"
           isRequired={false}
           isReadOnly={false}
-          placeholder="Search Pet"
+          placeholder="Search dogs"
           value={currentPetsDisplayValue}
           options={petsRecords
             .filter((r) => !PetsIdSet.has(getIDValue.Pets?.(r)))

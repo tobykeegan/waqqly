@@ -2,7 +2,7 @@ import { generateServerClientUsingCookies } from "@aws-amplify/adapter-nextjs/ap
 import amplifyConfig from "@/amplifyconfiguration.json";
 import { cookies } from "next/headers";
 import { getUser, listPets } from "../../../graphql/queries";
-
+import DataWarning from "../DataWarning";
 import PetTable from "./PetTable";
 
 export const cookieBasedClient = generateServerClientUsingCookies({
@@ -30,32 +30,44 @@ async function fetchPets() {
 }
 
 async function getUserName(id) {
+  console.log("Getting user name for id", id);
+  if (!id) return "No walker";
   const request = await cookieBasedClient.graphql({
     query: getUser,
     variables: {
       id,
     },
   });
-  return request.data.getUser?.name ? request.data.getUser?.name : "No owner";
+  return request.data.getUser.name;
 }
 
 export default async function ViewPet() {
+  const _cookies = cookies();
   let data = await fetchPets();
-  console.log("Data: ", data);
 
   // Get the user name for each pet
   let formatted = await Promise.all(
     data.map(async (pet) => {
-      const name = await getUserName(pet.userID);
-      return {
+      const walker = await getUserName(pet.userID);
+      const result = {
         ...pet,
-        userID: name,
+        walker: walker,
       };
+      console.log(result);
+      return result;
     })
   );
 
   return (
     <section className="section">
+      <div className="level">
+        <h1 className="is-size-3 level-left">View all dogs</h1>
+        <a className="button is-primary level-right" href="/register/pet">
+          Add a new dog
+        </a>
+      </div>
+
+      <DataWarning />
       <PetTable pets={formatted} />
     </section>
   );

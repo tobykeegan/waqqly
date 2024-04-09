@@ -10,7 +10,7 @@ export default function Home() {
           <h1 className="title">Welcome to the waqq.ly prototype!</h1>
           <br />
           <h2 className="subtitle">
-            Waqq.ly is a service to connect 🐶 and 🚶‍♂️
+            Wagg.ly is a service to connect 🐶 and 🚶‍♂️
           </h2>
         </section>
         <section className="section">

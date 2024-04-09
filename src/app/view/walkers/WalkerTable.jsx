@@ -1,6 +1,14 @@
 "use client";
 import Actions from "../Actions";
-export default function UserTable({ users }) {
+export default function Walker({ users: walkers }) {
+  if (walkers.length == 0) {
+    return (
+      <div className="notification is-warning">
+        There are currently no dog walkers in the database. Try{" "}
+        <a href="/register/walker">registering a walker</a>.
+      </div>
+    );
+  }
   return (
     <table className="table is-bordered is-striped is-hoverable is-fullwidth">
       <thead>
@@ -13,7 +21,7 @@ export default function UserTable({ users }) {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {walkers.map((user) => (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.email}</td>

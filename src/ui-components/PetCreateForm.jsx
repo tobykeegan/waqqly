@@ -230,7 +230,7 @@ export default function PetCreateForm(props) {
     breed: [],
     gender: [],
     info: [{ type: "Required" }],
-    userID: [{ type: "Required" }],
+    userID: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -345,9 +345,10 @@ export default function PetCreateForm(props) {
       {...rest}
     >
       <TextField
-        label="Name"
+        label="🐶 Name"
         isRequired={false}
         isReadOnly={false}
+        placeholder="Enter the dog's name"
         value={name}
         onChange={(e) => {
           let { value } = e.target;
@@ -373,9 +374,10 @@ export default function PetCreateForm(props) {
         {...getOverrideProps(overrides, "name")}
       ></TextField>
       <TextField
-        label="Breed"
+        label="🐕 Breed"
         isRequired={false}
         isReadOnly={false}
+        placeholder="What breed is this dog?"
         value={breed}
         onChange={(e) => {
           let { value } = e.target;
@@ -401,7 +403,7 @@ export default function PetCreateForm(props) {
         {...getOverrideProps(overrides, "breed")}
       ></TextField>
       <SelectField
-        label="Gender"
+        label="⚥ Gender"
         placeholder="Please select an option"
         isDisabled={false}
         value={gender}
@@ -440,7 +442,7 @@ export default function PetCreateForm(props) {
         ></option>
       </SelectField>
       <TextField
-        label="Info"
+        label="ℹ︎ Info"
         isRequired={true}
         isReadOnly={false}
         placeholder="Tell us about your pet..."
@@ -487,7 +489,7 @@ export default function PetCreateForm(props) {
           setCurrentUserIDValue(undefined);
         }}
         currentFieldValue={currentUserIDValue}
-        label={"Owner"}
+        label={"\uD83D\uDEB6 Walker"}
         items={userID ? [userID] : []}
         hasError={errors?.userID?.hasError}
         runValidationTasks={async () =>
@@ -521,10 +523,11 @@ export default function PetCreateForm(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="Owner"
-          isRequired={true}
+          label="🚶 Walker"
+          descriptiveText="Is someone already walking this pet?"
+          isRequired={false}
           isReadOnly={false}
-          placeholder="Search User"
+          placeholder="Search walkers"
           value={currentUserIDDisplayValue}
           options={userIDRecords
             .filter(

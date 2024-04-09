@@ -187,6 +187,7 @@ export default function PetUpdateForm(props) {
     onSuccess,
     onError,
     onSubmit,
+    onCancel,
     onValidate,
     onChange,
     overrides,
@@ -261,7 +262,7 @@ export default function PetUpdateForm(props) {
     breed: [],
     gender: [],
     info: [],
-    userID: [{ type: "Required" }],
+    userID: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -321,7 +322,7 @@ export default function PetUpdateForm(props) {
           breed: breed ?? null,
           gender: gender ?? null,
           info: info ?? null,
-          userID,
+          userID: userID ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -515,7 +516,7 @@ export default function PetUpdateForm(props) {
           setCurrentUserIDValue(undefined);
         }}
         currentFieldValue={currentUserIDValue}
-        label={"Owner"}
+        label={"Change dog walker"}
         items={userID ? [userID] : []}
         hasError={errors?.userID?.hasError}
         runValidationTasks={async () =>
@@ -549,10 +550,11 @@ export default function PetUpdateForm(props) {
         defaultFieldValue={""}
       >
         <Autocomplete
-          label="Owner"
-          isRequired={true}
+          label="Change dog walker"
+          descriptiveText="Modify or remove the associated walker."
+          isRequired={false}
           isReadOnly={false}
-          placeholder="Search User"
+          placeholder="Search walkers"
           value={currentUserIDDisplayValue}
           options={userIDRecords
             .filter(
@@ -608,6 +610,14 @@ export default function PetUpdateForm(props) {
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
+          <Button
+            children="Cancel"
+            type="button"
+            onClick={() => {
+              onCancel && onCancel();
+            }}
+            {...getOverrideProps(overrides, "CancelButton")}
+          ></Button>
           <Button
             children="Submit"
             type="submit"

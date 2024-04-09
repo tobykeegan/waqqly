@@ -19,7 +19,7 @@ export default function DeleteModal(props) {
         <footer className="modal-card-foot">
           <div className="buttons">
             <button className="button is-danger" onClick={props.onConfirm}>
-              I'm sure, delete.
+              I&apos;m sure, delete.
             </button>
             <button className="button" onClick={props.onHide}>
               Cancel

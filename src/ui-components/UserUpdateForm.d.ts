@@ -52,6 +52,7 @@ export declare type UserUpdateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: UserUpdateFormInputValues) => UserUpdateFormInputValues;
     onSuccess?: (fields: UserUpdateFormInputValues) => void;
     onError?: (fields: UserUpdateFormInputValues, errorMessage: string) => void;
+    onCancel?: () => void;
     onChange?: (fields: UserUpdateFormInputValues) => UserUpdateFormInputValues;
     onValidate?: UserUpdateFormValidationValues;
 } & React.CSSProperties>;

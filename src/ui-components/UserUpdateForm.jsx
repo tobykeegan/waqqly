@@ -186,6 +186,7 @@ export default function UserUpdateForm(props) {
     onSuccess,
     onError,
     onSubmit,
+    onCancel,
     onValidate,
     onChange,
     overrides,
@@ -222,7 +223,7 @@ export default function UserUpdateForm(props) {
   };
   const [userRecord, setUserRecord] = React.useState(userModelProp);
   const [linkedPets, setLinkedPets] = React.useState([]);
-  const canUnlinkPets = false;
+  const canUnlinkPets = true;
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
@@ -253,7 +254,7 @@ export default function UserUpdateForm(props) {
       : getIDValue.Pets?.(Pets)
   );
   const getDisplayValue = {
-    Pets: (r) => `${r?.name ? r?.name + " - " : ""}${r?.id}`,
+    Pets: (r) => `${r?.name}`,
   };
   const validations = {
     name: [],
@@ -286,9 +287,7 @@ export default function UserUpdateForm(props) {
     while (newOptions.length < autocompleteLength && newNext != null) {
       const variables = {
         limit: autocompleteLength * 5,
-        filter: {
-          or: [{ name: { contains: value } }, { id: { contains: value } }],
-        },
+        filter: { or: [{ name: { contains: value } }] },
       };
       if (newNext) {
         variables["nextToken"] = newNext;
@@ -649,6 +648,14 @@ export default function UserUpdateForm(props) {
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
+          <Button
+            children="Cancel"
+            type="button"
+            onClick={() => {
+              onCancel && onCancel();
+            }}
+            {...getOverrideProps(overrides, "CancelButton")}
+          ></Button>
           <Button
             children="Submit"
             type="submit"
