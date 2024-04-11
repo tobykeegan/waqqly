@@ -18,7 +18,8 @@ export default function Home() {
             demonstrates a full-stack application with a serverless backend.
             Under the covers, Amplify leverages <strong>AWS DynamoDB</strong>{" "}
             for storage, and exposes a GraphQL API for data access, through{" "}
-            <strong>AWS AppSync</strong>. You can check out the repository on{" "}
+            <strong>AWS AppSync</strong>. You can check out the repository by
+            clicking the GitHub button in the top right corner.
           </div>
         </article>
         <div className="container">

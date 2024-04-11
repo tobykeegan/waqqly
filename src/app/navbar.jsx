@@ -59,12 +59,20 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
-            <a className="button is-link" href="https://docs.amplify.aws/gen2/">
+            <a
+              className="button is-link"
+              target="_blank"
+              href="https://docs.amplify.aws/gen2/"
+            >
               Made with AWS Amplify Gen 2
             </a>
           </div>
           <div className="navbar-item">
-            <a className="button">
+            <a
+              className="button"
+              target="_blank"
+              href="https://github.com/tobykeegan/waqqly"
+            >
               <span className="icon">
                 <i className="fab fa-github"></i>
               </span>
