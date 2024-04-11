@@ -229,7 +229,7 @@ export default function UserCreateForm(props) {
       : getIDValue.Pets?.(Pets)
   );
   const getDisplayValue = {
-    Pets: (r) => `${r?.name}${" - "}`,
+    Pets: (r) => `${r?.name}`,
   };
   const validations = {
     name: [],

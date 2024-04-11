@@ -17,6 +17,12 @@
       },
       "api": {
         "waqqly": {}
+      },
+      "function": {
+        "manageWalkers": {
+          "deploymentBucketName": "amplify-waqqly-staging-175413-deployment",
+          "s3Key": "amplify-builds/manageWalkers-6b46664a345238784273-build.zip"
+        }
       }
     }
   }

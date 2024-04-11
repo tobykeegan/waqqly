@@ -22,5 +22,31 @@
       "service": "AppSync"
     }
   },
-  "auth": {}
+  "auth": {},
+  "function": {
+    "manageWalkers": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_manageWalkers_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "manageWalkers"
+        }
+      ]
+    },
+    "AMPLIFY_function_manageWalkers_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "manageWalkers"
+        }
+      ]
+    }
+  }
 }
